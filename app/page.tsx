@@ -2,6 +2,17 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { ProtectedEmail } from "@/components/protected-email"
+
+// Convert title to slug (kebab-case)
+function titleToSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim()
+}
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
@@ -225,40 +236,43 @@ export default function Home() {
                   readTime: "4 min",
                 },
               ].map((post, index) => (
-                <article
+                <Link
                   key={index}
-                  className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                  href={`/blog/${titleToSlug(post.title)}`}
+                  className="block"
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
-                      <span>{post.date}</span>
-                      <span>{post.readTime}</span>
+                  <article className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                        <span>{post.date}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
+
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                        <span>Read more</span>
+                        <svg
+                          className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
                     </div>
-
-                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                      {post.title}
-                    </h3>
-
-                    <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
-
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>Read more</span>
-                      <svg
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+                </Link>
               ))}
             </div>
           </div>
@@ -275,11 +289,11 @@ export default function Home() {
                 </p>
 
                 <div className="space-y-4">
-                  <Link
-                    href="mailto:rayzwxx@gmail.com"
+                  <ProtectedEmail
+                    email="jorge@andesphere.com"
                     className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
                   >
-                    <span className="text-base sm:text-lg">rayzwxx@gmail.com</span>
+                    <span className="text-base sm:text-lg">jorge@andesphere.com</span>
                     <svg
                       className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                       fill="none"
@@ -288,7 +302,7 @@ export default function Home() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </ProtectedEmail>
                 </div>
               </div>
             </div>
@@ -324,7 +338,6 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground">© 2025 Jorge Mena. All rights reserved.</div>
-              <div className="text-xs text-muted-foreground">Built with v0.dev by Jorge Mena</div>
             </div>
 
             <div className="flex items-center gap-4">
@@ -355,28 +368,12 @@ export default function Home() {
                   </svg>
                 )}
               </button>
-
-              <button className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300">
-                <svg
-                  className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
         </footer>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
+      <div className="fixed bottom-0 left-0 right-0 h-24 bg-linear-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
     </div>
   )
 }

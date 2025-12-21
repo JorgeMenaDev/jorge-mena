@@ -135,4 +135,108 @@
       transform: translateY(0);
     }
   }
+
+  /* Blog animations */
+  .animate-stagger-in {
+    animation: stagger-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes stagger-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-progress {
+    animation: progress-expand 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes progress-expand {
+    from {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    to {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+/* Blog prose styles */
+@layer base {
+  .blog-prose {
+    @apply text-foreground max-w-3xl mx-auto;
+  }
+
+  .blog-prose h1 {
+    @apply text-4xl sm:text-5xl font-light tracking-tight mb-6 mt-12 first:mt-0;
+  }
+
+  .blog-prose h2 {
+    @apply text-3xl sm:text-4xl font-light tracking-tight mb-4 mt-10 border-b border-border/50 pb-3;
+  }
+
+  .blog-prose h3 {
+    @apply text-2xl sm:text-3xl font-light mb-4 mt-8;
+  }
+
+  .blog-prose p {
+    @apply text-lg leading-relaxed mb-6 text-muted-foreground;
+  }
+
+  .blog-prose a {
+    @apply text-foreground underline decoration-muted-foreground/30 hover:decoration-foreground transition-colors duration-300;
+  }
+
+  .blog-prose ul,
+  .blog-prose ol {
+    @apply mb-6 ml-6 space-y-2 text-muted-foreground;
+  }
+
+  .blog-prose li {
+    @apply text-lg leading-relaxed;
+  }
+
+  .blog-prose blockquote {
+    @apply border-l-4 border-muted-foreground/30 pl-6 my-6 italic text-muted-foreground;
+  }
+
+  .blog-prose img {
+    @apply rounded-lg my-8 shadow-lg;
+  }
+
+  .blog-prose hr {
+    @apply my-12 border-border/50;
+  }
+
+  .blog-prose code {
+    @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .blog-prose table {
+    @apply w-full border-collapse my-6;
+  }
+
+  .blog-prose th,
+  .blog-prose td {
+    @apply border border-border px-4 py-2 text-left;
+  }
+
+  .blog-prose th {
+    @apply bg-muted font-semibold;
+  }
+
+  .blog-prose pre {
+    @apply bg-muted rounded-lg p-4 overflow-x-auto my-6;
+  }
+
+  .blog-prose pre code {
+    @apply bg-transparent p-0 text-foreground;
+  }
 }

@@ -1,0 +1,200 @@
+---
+title: "The Art of Code Review"
+excerpt: "Building better software through thoughtful and constructive code reviews."
+date: "2024-09-22"
+readTime: "4 min"
+tags: ["Code Review", "Team", "Quality"]
+published: true
+---
+
+Code review is where knowledge transfer, quality assurance, and team building intersect. Yet many teams treat it as a bureaucratic checkbox rather than an opportunity to elevate their craft.
+
+## Why Code Review Matters
+
+Code review isn't about finding bugs (though that's a benefit). It's about:
+
+- **Knowledge sharing**: Spreading understanding across the team
+- **Consistency**: Ensuring code meets team standards
+- **Learning**: Finding better ways to solve problems
+- **Culture**: Building a collaborative, learning-focused team
+
+<Callout type="info">
+  Research shows that thoughtful code review reduces bugs by 30%, improves code quality significantly, and creates a stronger team culture.
+</Callout>
+
+## The Reviewer's Mindset
+
+### Be Kind, Be Clear, Be Helpful
+
+```typescript
+// ❌ Unhelpful review
+"This is wrong. Use better variable names."
+
+// ✅ Constructive review
+"I found the variable names `x` and `temp` a bit unclear.
+Consider something like `userIndex` and `previousValue` for clarity.
+Here's why: [explanation]"
+```
+
+The best reviews explain the "why" behind suggestions, not just the "what."
+
+### Focus on the Important Stuff
+
+<Callout type="warning">
+  Don't nitpick formatting and style—that's what linters are for. Focus on logic, security, performance, and maintainability.
+</Callout>
+
+Categorize feedback:
+
+| Level | Example | Tone |
+|-------|---------|------|
+| **Critical** | Security vulnerabilities, logic errors | Blocking |
+| **Important** | Performance issues, maintainability | Should fix |
+| **Nice to have** | Alternative approaches, style suggestions | Suggestive |
+| **Informational** | FYI, context, good catches | Supportive |
+
+### Ask Questions
+
+```typescript
+// ❌ Accusatory
+"Why did you write this? It's inefficient."
+
+// ✅ Curious
+"I'm curious about the choice here—did you consider using a Set
+for O(1) lookups instead of an Array? What trade-offs did you weigh?"
+```
+
+Questions show respect for the author's decisions while prompting deeper thinking.
+
+## The Author's Mindset
+
+### Receive Feedback Gracefully
+
+<Callout type="tip">
+  Remember: criticism of your code isn't criticism of you. Your code is your work, not your identity.
+</Callout>
+
+When you receive feedback:
+
+1. **Listen**: Understand the reviewer's perspective
+2. **Ask clarifying questions**: Make sure you understand the concern
+3. **Acknowledge**: Even if you disagree, acknowledge the thought
+4. **Respond**: Explain your reasoning or fix the issue
+
+### Ask for Help
+
+```typescript
+// Good practice: Ask for input on uncertain areas
+// @reviewer: I'm not confident about this database query optimization.
+// Thoughts on whether this change will cause performance issues?
+
+const query = db.user
+  .where({ active: true })
+  .select({ id: true, name: true })
+  .orderBy({ createdAt: "desc" })
+```
+
+## Best Practices for Code Reviews
+
+### 1. Keep PRs Small
+
+<Callout type="info">
+  PRs over 400 lines of code take exponentially longer to review and are more likely to miss bugs. Aim for 150-300 lines.
+</Callout>
+
+### 2. Automate the Tedious Stuff
+
+```bash
+# Run these automatically, not in code review
+npm run lint
+npm run format
+npm run test
+npm run type-check
+```
+
+Focus your review on things humans are good at: logic, architecture, and maintainability.
+
+### 3. Use Templates
+
+```markdown
+## What does this PR do?
+
+[Brief description]
+
+## How to test?
+
+- [ ] Step 1
+- [ ] Step 2
+
+## Related issues
+
+Fixes #123
+
+## Type of change
+
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
+```
+
+### 4. Set Expectations
+
+- **SLA for review**: How long before expecting feedback?
+- **Approval process**: Who needs to approve?
+- **Merge responsibility**: Who merges (author or reviewer)?
+
+## Red Flags in Code Review
+
+Watch for these patterns:
+
+```typescript
+// ❌ Too much logic in one function
+function processUserData(data) {
+  // 50 lines of validation
+  // 30 lines of transformation
+  // 20 lines of formatting
+  // 15 lines of API calls
+}
+
+// ✅ Broken into smaller functions
+function validateUserData(data) { /* 10 lines */ }
+function transformUserData(data) { /* 20 lines */ }
+function formatUserData(data) { /* 15 lines */ }
+function saveUserData(data) { /* 10 lines */ }
+```
+
+## Creating a Review Culture
+
+### Lead by Example
+
+- Provide thoughtful, kind, detailed reviews
+- Ask questions instead of making statements
+- Acknowledge good code
+- Share learning moments
+
+### Make it Safe
+
+<Callout type="warning">
+  If your team feels criticized during reviews, they'll stop participating. Foster a culture of psychological safety.
+</Callout>
+
+### Measure What Matters
+
+Track:
+- Average review turnaround time
+- Team satisfaction with code review process
+- Bug detection rate
+- Time to merge
+
+## Conclusion
+
+Code review is a skill that improves with practice and intention. The best teams treat reviews not as gatekeeping, but as collaboration and growth.
+
+Every review is an opportunity to:
+- Make the codebase better
+- Help a teammate grow
+- Share knowledge across the team
+- Build trust and respect
+
+Invest in making code review great, and your entire team—and codebase—will benefit.
+
