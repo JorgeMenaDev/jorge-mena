@@ -15,6 +15,16 @@ This is a **minimalist portfolio website** for Jorge Mena, showcasing profession
 
 ---
 
+## Package Manager
+
+**This project uses `bun` as the package manager.** All commands should be run with `bun` instead of `npm` or `yarn`.
+
+- `bun.lock` is the lockfile (equivalent to `package-lock.json`)
+- Bun is significantly faster than npm while remaining compatible with Node.js
+- Install bun: https://bun.sh
+
+---
+
 ## Common Commands
 
 ### Development
