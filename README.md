@@ -1,27 +1,31 @@
-# Minimalist Portfolio Website
+# Jorge Mena - Senior Software Engineer Portfolio
 
-A clean, modern portfolio website built with Next.js and Tailwind CSS, featuring smooth animations and dark/light theme support.
+A clean, minimalist portfolio website showcasing projects and expertise in modern web technologies, AI, and full-stack development. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ## ✨ Features
 
+- **Dark Mode Only** - Sleek dark theme optimized for readability and aesthetics
 - **Minimalist Design** - Clean typography with Geist font and strategic use of whitespace
-- **Responsive Layout** - Mobile-first design that works on all devices
-- **Theme Toggle** - Seamless dark/light mode switching
-- **Smooth Animations** - Subtle scroll-triggered animations and hover effects
-- **Modern Stack** - Built with Next.js 15, TypeScript, and Tailwind CSS
+- **Responsive Layout** - Mobile-first design that works seamlessly on all devices
+- **Smooth Animations** - Scroll-triggered fade-in animations and subtle hover effects
+- **Protected Email** - Client-side email protection against bots and scrapers
+- **Modern Stack** - Next.js 15, TypeScript, Tailwind CSS v4, and Radix UI components
+- **Blog Integration** - MDX support for technical writing and articles
 
 ## 🚀 Built With
 
-- [Next.js](https://nextjs.org/) - React framework
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [v0.dev](https://v0.dev/) - AI-powered development
+- [Next.js 15](https://nextjs.org/) - React framework with App Router
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe development
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first styling
+- [Radix UI](https://www.radix-ui.com/) - Accessible component library
+- [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) - MDX support for blog posts
 
 ## 📦 Getting Started
 
 \`\`\`bash
 # Clone the repository
-git clone https://github.com/felixmacaspac/v0-minimalist-portfolio.git
+git clone https://github.com/JorgeMenaDev/minimalist-portfolio.git
+cd minimalist-portfolio
 
 # Install dependencies
 npm install
@@ -36,14 +40,19 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
 The portfolio is designed to be easily customizable:
 
-- Update personal information in `app/page.tsx`
-- Modify colors and styling in `app/globals.css`
-- Add or remove sections as needed
+- **Personal Info** - Update in `app/page.tsx`
+- **Styling & Colors** - Modify in `app/globals.css` (uses OKLCH color space)
+- **Blog Content** - Add/edit markdown files in `content/blog/`
+- **Components** - Reusable UI components in `components/`
 
-## 📄 License
+## 🔒 Email Protection
+
+The contact email is protected using client-side rendering and dynamic href injection to prevent scraping by bots while maintaining full functionality for users.
+
+## 📝 License
 
 Open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Built with ❤️ using [v0.dev](https://v0.dev) by Felix Macaspac**
+**Jorge Mena** | Senior Software Engineer | [Email](mailto:jorge@andesphere.com) | [GitHub](https://github.com/JorgeMenaDev) | [Twitter/X](https://x.com/JorgeMenaDev)
