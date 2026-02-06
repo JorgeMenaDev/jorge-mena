@@ -1,14 +1,22 @@
 "use client"
 
-import { AlertTriangle, Info, Lightbulb, XCircle } from "lucide-react"
-import { ReactNode } from "react"
+import { AlertTriangle, Info, Lightbulb, XCircle, type LucideIcon } from "lucide-react"
+import type { AriaRole, ReactNode } from "react"
 
 interface CalloutProps {
   type: "info" | "warning" | "tip" | "danger"
   children: ReactNode
 }
 
-const calloutConfig = {
+const calloutConfig: Record<CalloutProps["type"], {
+  icon: LucideIcon
+  bgColor: string
+  borderColor: string
+  textColor: string
+  iconColor: string
+  ariaLabel: string
+  role: AriaRole
+}> = {
   info: {
     icon: Info,
     bgColor: "bg-blue-50 dark:bg-blue-950/50",
@@ -52,11 +60,11 @@ export function Callout({ type, children }: CalloutProps) {
   const Icon = config.icon
 
   return (
-    <div
-      className={`my-6 flex gap-4 rounded-lg border-l-4 p-4 ${config.bgColor} ${config.borderColor} ${config.textColor}`}
-      role={config.role as any}
-      aria-label={config.ariaLabel}
-    >
+	    <div
+	      className={`my-6 flex gap-4 rounded-lg border-l-4 p-4 ${config.bgColor} ${config.borderColor} ${config.textColor}`}
+	      role={config.role}
+	      aria-label={config.ariaLabel}
+	    >
       <Icon className={`mt-0.5 h-5 w-5 flex-shrink-0 ${config.iconColor}`} aria-hidden="true" />
       <div className="text-sm leading-relaxed [&>p]:mb-0 [&>p:last-child]:mb-0">
         {children}
